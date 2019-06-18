@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import ChatApp from './ChatApp';
+require("../styles/App.css");
+require("../styles/ChatApp.css");
 
 class ChatHome extends Component {
 

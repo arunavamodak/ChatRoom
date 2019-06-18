@@ -1,28 +1,39 @@
-import React, {Component} from 'react';
- class ChatInput extends Component{
-     constructor(props)
-     {
+import React, { Component } from 'react';
+require("../styles/App.css");
+require("../styles/ChatApp.css");
+
+
+class ChatInput extends Component {
+
+    constructor(props) {
+
         super(props);
-        this.state = {text : ""};
+        this.state = { text: "" };
 
-     }
+    }
 
-     sendMessage = () => {
-         this.props.onSend(this.state.text);
-     }
+    sendMessage = (event) => {
+        event.preventDefault();
+        this.props.onSend(this.state.text);
+        this.setState({ text: "" });
+    }
 
-     handleChange = (event) =>{
-         this.setState({text : event.target.value});
-     }
+    handleChange = (event) => {
 
-     render(){
-         return(
-             <div>
-                 <input type = "text" onChange = {this.handleChange} value = {this.state.text}></input>
-                 <button onClick = {this.sendMessage}>Send</button>
-             </div>
-         );
-     }
- };
+        this.setState({ text: event.target.value });
 
- export default ChatInput;
+        this.props.onType(this.props.SendName);
+    }
+
+    render() {
+        return (
+           
+                <form onSubmit={this.sendMessage}>
+                    <input type="text" placeholder = "yaha pe type karo...." onChange={this.handleChange} value={this.state.text}></input>
+                </form>
+            
+        );
+    }
+};
+
+export default ChatInput;
